@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Preview - Menu</title>
+    <script src="../preview/js/phaser.min.js"></script>
+    <script src="../dist/slick-ui.min.js"></script>
+</head>
+<body>
+
+<div id="gameContainer"></div>
+
+<script type="text/javascript">
+    var game = new Phaser.Game(650, 350, Phaser.CANVAS, '', { preload: preload, create: create, update: update });
+    var slickUI;
+    function preload() {
+        slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
+        slickUI.load('../preview/assets/ui/kenney/kenney.json');
+    }
+    function create() {
+        slickUI.add(panel = new SlickUI.Element.Panel(
+                  10,
+                  10,
+                  380,
+                  280
+      	));
+
+      	panel.add(slider = new SlickUI.Element.Slider(10,30, panel.width - 20, 0.3));
+        game.world.setBounds(-100, -100, 500, 400);
+        //    slider.container.displayGroup.fixedToCamera = true
+    }
+    function update() {
+        game.camera.x += Math.random()-0.5
+        game.camera.y += Math.random()-0.5
+    }
+</script>
+
+</body>
+</html>

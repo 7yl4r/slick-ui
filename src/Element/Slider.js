@@ -22,7 +22,7 @@ SlickUI.Element.Slider = function (x, y, size, value) {
 
 /**
  * Internal Container handling.
- * 
+ *
  * @param container
  */
 SlickUI.Element.Slider.prototype.setContainer = function (container) {
@@ -49,9 +49,11 @@ SlickUI.Element.Slider.prototype.init = function() {
     var handle_on = renderedSprites[2];
     sprite_base.x = x;
     sprite_base.y = y;
+    sprite_base.fixedToCamera = true;
 
     sprite_handle = this.container.root.game.make.sprite(initialPosition, y, handle_off.texture);
     sprite_handle.anchor.setTo(0.5);
+    sprite_handle.fixedToCamera = true;
 
     sprite_handle.inputEnabled = true;
     sprite_handle.input.useHandCursor = true;
@@ -72,7 +74,7 @@ SlickUI.Element.Slider.prototype.init = function() {
         if(!dragging) {
             return;
         }
-        sprite_handle.x = Math.min(x + width, Math.max(x, pointer_x - this.container.displayGroup.x));
+        sprite_handle.cameraOffset.x = Math.min(x + width, Math.max(x, pointer_x));
         this.onDrag.dispatch((sprite_handle.x - x) / width);
     }, this);
 
